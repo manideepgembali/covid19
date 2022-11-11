@@ -54,14 +54,14 @@ const convertObj2=(objectItem)=>{
 app.get("/states/",async(request,response)=>{
     const getStates=`select * from state`
     const result=await db.all(getStates)
-    response.send(result.map(eachItem)=>convertObj(eachItem))
+    response.send(result.map((eachItem)=>convertObj(eachItem)))
 });
 //2
 app.get("/states/:stateId/",async(request,response)=>{
     const {stateId}=request.params
     const getStates=`select * from state where state_id=${stateId}`
     const result=await db.all(getStates)
-    response.send(result.map(eachItem)=>convertObj(eachItem))
+    response.send(result.map((eachItem)=>convertObj(eachItem)))
 });
 //3
 app.post("/districts/",async(request,response)=>{
@@ -76,7 +76,7 @@ app.get("/districts/:districtId/",async(request,response)=>{
     const {districtId}=request.params
     const getStates=`select * from district where district_id=${districtId}`
     const result=await db.all(getStates)
-    response.send(result.map(eachItem)=>convertObj1(eachItem))
+    response.send(result.map((eachItem)=>convertObj1(eachItem)))
 });
 //5
 app.delete("districts/:districtId/",async(request,responce)=>{
@@ -99,14 +99,14 @@ app.get("/states/:stateId/stats/",async(request,response)=>{
     const getQuery=`select sum(cases) as totalCases,sum(cured) as totalCured,sum(active) as totalActive,sum(deaths) as totalDeaths
     from district where state_id=${stateId}`
     const getQueryResult=await db.all(getQuery)
-    response.send(getQueryResult.map(eachItem)=>convertObj3(eachItem))
+    response.send(getQueryResult.map((eachItem)=>convertObj3(eachItem)))
 })
 //8
 app.get("/districts/:districtId/details/",async(request,response)=>{
     const {districtId}=request.params
     const getState=`select state_name from state innerjoin district on district.state_id=state.state_id where district_id=${districtId}`
     const getStateQuery=await db.run(getState)
-    response.send(getStateQuery.map(eachItem)=>convertObj2(eachItem))
+    response.send(getStateQuery.map((eachItem)=>convertObj2(eachItem)))
 })
 
 module.exports=app
