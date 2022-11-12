@@ -26,30 +26,30 @@ const initialiseDbAndServer = async () => {
 initialiseDbAndServer();
 
 const convertObj=(objectItem)=>{
-    return  stateId: objectItem.state_id,
+    return { stateId: objectItem.state_id,
     stateName: objectItem.state_name,
     population: objectItem.population
-}
+           }}
 const convertObj1=(objectItem)=>{
-    return  districtId: objectItem.districtId,
+    return { districtId: objectItem.districtId,
     districtName: objectItem.districtName,
     stateId: objectItem.stateId,
     cases:objectItem.cases,
     cured:objectItem.cured,
     active:objectItem.active,
     deaths:objectItem.deaths
-}
+           }}
 const convertObj3=(objectItem)=>{
-    return  
+    return  {
     cases:objectItem.cases,
     cured:objectItem.cured,
     active:objectItem.active,
     deaths:objectItem.deaths
-}
+    }}
 const convertObj2=(objectItem)=>{
-    return  
+    return  {
     stateName: objectItem.state_name,
-}
+    }}
 //1
 app.get("/states/",async(request,response)=>{
     const getStates=`select * from state`
